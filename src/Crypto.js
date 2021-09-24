@@ -26,9 +26,11 @@ class Crypto extends Component {
 
     getCryptoData = () => {
 
-        axios.get('https://blockchain.info/pl/ticker')
+        axios.get('https://api.blockchain.com/v3/exchange/tickers')
             .then(res => {
                 const tickers = res.data;
+
+                console.log(res.data);
 
                 this.setState((state) => {
                     let newCryptoList = [];
@@ -41,16 +43,16 @@ class Crypto extends Component {
                         let newCryptoObj = {
                             currency: ticker,
                             symbol: cryptoRate.symbol,
-                            buy: cryptoRate.buy,
-                            sell: cryptoRate.sell,
-                            lastRate: cryptoRate.last,
+                            price: cryptoRate.price_24h,
+                            volume: cryptoRate.volume_24h,
+                            lastRate: cryptoRate.last_trade_price,
                         }
 
                         if (lastCryptoObj !== undefined) {
                             if (newCryptoObj.lastRate > lastCryptoObj.lastRate) {
                                 newCryptoObj.cssClass = 'green'; 
                                 newCryptoObj.htmlArray = String.fromCharCode(8593);
-                            } else if (newCryptoObj.lastRate < lastCryptoObj.lastRate) {
+                            } else if (newCryptoObj.lastRate< lastCryptoObj.lastRate) {
                                 newCryptoObj.cssClass = 'red'; 
                                 newCryptoObj.htmlArray = String.fromCharCode(8595);
                         } else {

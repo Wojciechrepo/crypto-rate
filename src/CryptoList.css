@@ -22,6 +22,15 @@
     padding: 0 5px;
 }
 
+.CryptoList ul.TheList li span.Volume24Obj {
+    color: purple;
+}
+
+.CryptoList ul.TheList li span.CryptoPrice24Obj {
+    color: orange;
+
+}
+
 .red {
     color: red;
 }
